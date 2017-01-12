@@ -1,0 +1,46 @@
+<ion-view view-title="Repositories">
+  <ion-content>
+
+    <div class="center">
+      <div class="row row-center">
+        <div class="col col-center">
+          <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios-search placeholder-icon"></i>
+              <input ng-model="binding.search" type="text" placeholder="Search..." ng-keyup="users()">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="searchResponse">
+      <div class="item item-divider">
+        <h2 class="title">{{searchResponse.length}} repos for: "<span style="font-style:italic;">{{user}}</span>"</h2>
+      </div>
+      <div class="list">
+        <div ng-repeat="repo in searchResponse | filter:binding.search" class="item">
+          <div class="row responsive-sm">
+            <div class="col col-20">
+              <a href="{{repo.html_url}}">{{repo.name}}</a>
+            </div>
+            <div class="col col-60">
+              <span style="text-overflow: ellipsis;white-space: initial;">{{repo.description|limitTo:50}}</span>
+            </div>
+            <div class="col col-20">
+              <div ng-show="repo.commits.length">
+                Commits:
+                <div ng-repeat="commit in repo.commits">
+                  <a href="{{commit.html_url}}" title="{{commit.sha}}">Sha {{$index+1}} </a>
+                  <span style="font-style:italic;">{{commit.commit.committer.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>

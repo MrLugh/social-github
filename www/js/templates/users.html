@@ -1,0 +1,40 @@
+<ion-view view-title="Users">
+  <ion-content>
+
+    <ion-refresher pulling-text="Update..." on-refresh="doRefresh()"></ion-refresher>
+
+    <div class="center">
+      <div class="row row-center">
+        <div class="col col-center">
+          <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios-search placeholder-icon"></i>
+              <input ng-model="binding.search" type="text" placeholder="Search..." ng-keyup="users()">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="searchResponse" class="list">
+      <div class="item item-divider">
+        <h2 class="title">{{searchResponse.total_count}} results for: <span style="font-style:italic;">{{binding.search}}</span></h2>
+      </div>
+      <div ng-repeat="user in searchResponse.items">
+        <div class="item item-thumbnail-left">
+          <img ng-src="{{user.avatar_url}}">
+          <div class="badge badge-prometium">Score: {{user.score}}</div>
+          <h1 class="title"><a href="#/app/repositories/{{user.login}}">{{user.login}}</a></h1>
+          <div ng-show="user.followers.length" class="list list-inset">
+              <div ng-repeat="follower in user.followers" class="item item-avatar">
+                <img ng-src="{{follower.avatar_url}}">
+                <h4><a href="#/app/repositories/{{follower.login}}">{{follower.login}}</a></h4>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>
