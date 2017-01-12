@@ -1,8 +1,7 @@
 angular.module("socialGithub.controllers", [])
 
-.controller("AppCtrl",["$scope", "$state", "$timeout", "AppSv", 
-function($scope, $state, $timeout, AppSv) {
-
+.controller("AppCtrl",["$scope", "$state", "$timeout", "$ionicHistory", "AppSv", 
+function($scope, $state, $timeout, $ionicHistory, AppSv) {
 
 	$scope.AppSv = AppSv;
 
@@ -67,14 +66,14 @@ function($scope, $state, $timeout, AppSv) {
 
 }])
 
-.controller("UsersCtrl",["$scope", "$state", "$timeout", "AppSv", 
-function($scope, $state, $timeout, AppSv) {
+.controller("UsersCtrl",["$scope", "$state", "$timeout", "$stateParams", "AppSv", 
+function($scope, $state, $timeout, $stateParams, AppSv) {
 
 
 	$scope.AppSv = AppSv;
 
 	$scope.binding = {
-		"search":""
+		"search": $stateParams.username || ""
 	};
 
 	$scope.searchResponse = null;
@@ -106,6 +105,10 @@ function($scope, $state, $timeout, AppSv) {
 				}
 			);
 		},500);
+	}
+
+	if ($stateParams.username && $stateParams.username.length) {
+		$scope.users();
 	}
 
 }])

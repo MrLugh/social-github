@@ -21,13 +21,13 @@
       <div class="list">
         <div ng-repeat="repo in searchResponse | filter:binding.search" class="item">
           <div class="row responsive-sm">
-            <div class="col col-20">
+            <div class="col col-30">
               <a href="{{repo.html_url}}">{{repo.name}}</a>
             </div>
-            <div class="col col-60">
+            <div class="col col-40">
               <span style="text-overflow: ellipsis;white-space: initial;">{{repo.description|limitTo:50}}</span>
             </div>
-            <div class="col col-20">
+            <div class="col col-30">
               <div ng-show="repo.commits.length">
                 Commits:
                 <div ng-repeat="commit in repo.commits">
