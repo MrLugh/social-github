@@ -24,9 +24,7 @@ angular.module('socialGithub', ["ionic", "socialGithub.services", "socialGithub.
 })
 
 .constant("apiOauth", {
-  "client_id": "bf968da7e7c54e87bb47",
-  "secret":"2a8a72f2cbd8f0e5ee21e29776f60f5579e41235",
-  "access_token":"24f2e36ccb24fce316addaf53d00dbc6c9f290e2"
+  "access_token":""
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

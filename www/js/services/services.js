@@ -5,7 +5,7 @@ angular.module("socialGithub.services", [])
 
     var apiConfig = null;
     var apiUrl = "https://api.github.com";
-    var token = apiOauth.access_token+"ssasasa";
+    var token = apiOauth.access_token;
 
     var getApiConfig = function() {
       return apiConfig;
