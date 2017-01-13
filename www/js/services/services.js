@@ -5,7 +5,7 @@ angular.module("socialGithub.services", [])
 
     var apiConfig = null;
     var apiUrl = "https://api.github.com";
-    var token = apiOauth.access_token;
+    var token = apiOauth.access_token.length ? apiOauth.access_token : localStorage.getItem('token');
 
     var getApiConfig = function() {
       return apiConfig;
@@ -17,6 +17,7 @@ angular.module("socialGithub.services", [])
 
     var setToken = function(tkn) {
       token = tkn;
+      localStorage.setItem('token',token);
     }
 
     var get = function(url) {
@@ -34,6 +35,10 @@ angular.module("socialGithub.services", [])
 
     var checkApi = function() {
       return get(apiUrl+"?access_token="+token);
+    }
+
+    var checkToken = function(tkn) {
+      return get(apiUrl+"?access_token="+tkn);
     }
 
     var searchUsers = function(text) {
@@ -54,6 +59,7 @@ angular.module("socialGithub.services", [])
 
     return {
       checkApi:checkApi,
+      checkToken:checkToken,
       getApiConfig:getApiConfig,
       getToken:getToken,
       setToken:setToken,

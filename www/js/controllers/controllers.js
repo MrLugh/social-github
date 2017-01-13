@@ -47,13 +47,13 @@ function($scope, $state, $timeout, AppSv) {
 	$scope.loading = true;
 	$scope.hasError = false;
 
-	$scope.checkApi = function() {
-		$scope.AppSv.setToken($scope.binding.token);
+	$scope.checkToken = function() {
 		$timeout(function(){
-			$scope.AppSv.checkApi().then(
+			$scope.AppSv.checkToken($scope.binding.token).then(
 				function(response){
 					$scope.loading = false;
 					$scope.hasError = false;
+					$scope.AppSv.setToken($scope.binding.token);
 					$state.go("app.users");
 				},
 				function(response){
